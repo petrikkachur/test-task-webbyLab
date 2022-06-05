@@ -1,0 +1,11 @@
+const path = require("path");
+require("dotenv").config();
+
+const dir = process.env.SEQUALIZE_DIR;
+
+module.exports = {
+  config: path.resolve(`${dir}/database`, "config.js"),
+  "models-path": path.resolve(`${dir}/database`, "models"),
+  "seeders-path": path.resolve(`${dir}/database`, "seeds"),
+  "migrations-path": path.resolve(`${dir}/database`, "migrations"),
+};
