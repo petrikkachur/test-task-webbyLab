@@ -173,6 +173,13 @@ export default {
       films,
       3,
       async.asyncify(async (film) => {
+        const existedFilm = await models.Films.findOne({
+          where: {
+            title: film.title,
+          },
+        });
+        if (existedFilm) return existedFilm;
+
         const result = await sequelize.transaction(createFilm(film));
         delete result.actors;
 
@@ -183,7 +190,7 @@ export default {
     const total = await models.Films.count();
 
     return res.send({
-      data: addedFilms,
+      data: [...new Map(addedFilms.map((item) => [item.id, item])).values()],
       meta: {
         imported: addedFilms.length,
         total,
