@@ -1,5 +1,5 @@
 export function fileParser(buffer) {
-  const data = String.fromCharCode(...buffer);
+  const data = buffer.toString();
 
   const arr = [];
   const regex = /(?<=((Title:|Release Year:|Format:|Stars:)\s)).+/gm;

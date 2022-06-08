@@ -135,7 +135,7 @@ export default {
     }
 
     const films = await models.Films.findAndCountAll({
-      subQuery: false,
+      // subQuery: false,
       distinct: true,
       where,
       include: [
