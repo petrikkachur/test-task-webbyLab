@@ -8,7 +8,8 @@ export const movieSchema = Joi.object({
   format: Joi.string()
     .equal(...Object.values(MOVIE_FORMATS))
     .required(),
-  actors: Joi.array().items(Joi.string().pattern(/\S+\s\S+/).required()).min(1).required(),
+  actors: Joi.array().items(Joi.string().pattern(/\S+\s\S+/).required()).min(1).unique((a, b) => a === b)
+    .required(),
 });
 
 export const paramsMovieSchema = Joi.object({
