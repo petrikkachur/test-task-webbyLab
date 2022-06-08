@@ -12,7 +12,7 @@ export default {
         email: body.email,
       },
     });
-    if (!user) return res.status(404, 'User not found');
+    if (!user) return res.status(404).send('User not found');
 
     const confirmPassword = await checkPassword(body.password, user.password);
     if (!confirmPassword) return res.status(404).send('Password isn`t correct');

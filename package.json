@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start" : "node dist/index.js",
-    "dev": "nodemon --inspect --exec APP_PORT=9078 babel-node src/index.js",
+    "dev": "nodemon --inspect --exec babel-node src/index.js",
     "prebuild": "rm -fR dist",
     "build": "npx babel src --out-dir dist --copy-files",
     "db:refresh": "npm run db:clear && npm run migration:run ",
