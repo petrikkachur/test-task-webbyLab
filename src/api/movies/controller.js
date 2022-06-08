@@ -13,7 +13,7 @@ export default {
         title: body.title,
       },
     });
-    if (existFilm) return res.status(409).send('User is existed');
+    if (existFilm) return res.status(409).send('Film is existed');
 
     const result = await sequelize.transaction(createFilm(body));
 

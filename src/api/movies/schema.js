@@ -2,12 +2,13 @@ import Joi from 'joi';
 import { MOVIE_FORMATS, MOVIE_IMPORT_MIME_TYPES } from '../../utils/consts';
 
 export const movieSchema = Joi.object({
-  title: Joi.string().required(),
-  year: Joi.number().integer().required(),
+  title: Joi.string().trim().required(),
+  year: Joi.number().integer().min(1870).max(new Date().getFullYear())
+    .required(),
   format: Joi.string()
     .equal(...Object.values(MOVIE_FORMATS))
     .required(),
-  actors: Joi.array().items(Joi.string()).min(1).required(),
+  actors: Joi.array().items(Joi.string().pattern(/\S+\s\S+/).required()).min(1).required(),
 });
 
 export const paramsMovieSchema = Joi.object({

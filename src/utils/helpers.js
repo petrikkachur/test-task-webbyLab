@@ -36,8 +36,8 @@ export function createFilm(filmData) {
 
     const actors = await Promise.all(
       filmData.actors.map(async (item) => {
-        const firstName = item.split(' ')[0];
-        const lastName = item.split(' ')[1];
+        const firstName = item.split(' ')[0].trim();
+        const lastName = item.split(' ')[1].trim();
 
         let actor;
         actor = await models.Actors.findOne({
