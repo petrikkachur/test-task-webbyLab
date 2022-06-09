@@ -161,7 +161,7 @@ export default {
     let data = films.rows;
     if (query.sort === 'title') {
       data = films.rows.sort((a, b) => {
-        if (query.sort === 'ASC') {
+        if (query.order === 'ASC') {
           return a.title.localeCompare(b.title, 'en-EN', { sensitivity: 'variant' });
         } return b.title.localeCompare(a.title, 'en-EN', { sensitivity: 'variant' });
       });
