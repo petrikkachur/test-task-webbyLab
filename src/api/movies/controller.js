@@ -159,7 +159,13 @@ export default {
     });
 
     let data = films.rows;
-    if (query.sort === 'title') data = films.rows.sort((a, b) => a.title.localeCompare(b.title, 'en-EN', { sensitivity: 'variant' }));
+    if (query.sort === 'title') {
+      data = films.rows.sort((a, b) => {
+        if (query.sort === 'ASC') {
+          return a.title.localeCompare(b.title, 'en-EN', { sensitivity: 'variant' });
+        } return b.title.localeCompare(a.title, 'en-EN', { sensitivity: 'variant' });
+      });
+    }
 
     return res.send({
       data,
