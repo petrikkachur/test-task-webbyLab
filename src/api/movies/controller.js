@@ -150,13 +150,19 @@ export default {
           },
         },
       ],
-      order: [[query.sort, query.order]],
+      order: [
+        [query.sort,
+          query.order],
+      ],
       limit: query.limit,
       offset: query.offset,
     });
 
+    let data = films.rows;
+    if (query.sort === 'title') data = films.rows.sort((a, b) => a.title.localeCompare(b.title, 'en-EN', { sensitivity: 'variant' }));
+
     return res.send({
-      data: films.rows,
+      data,
       meta: {
         total: films.count,
       },
